@@ -2,12 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Google font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+/* --- CSS Variables (light + dark) --- */
 :root{
   --bg: 255 255 255;
+  --surface: 255 255 255;
   --text: 15 23 42;
+  --muted: 100 116 139;
   --accent: 37 99 235;
+  --card-border: rgba(2,6,23,0.04);
+  --glass: 255 255 255 / 0.6;
 }
 
+/* Dark mode variables (applied when .dark on html) */
+:root.dark {
+  --bg: 8 10 15;
+  --surface: 14 17 23;
+  --text: 226 232 240;
+  --muted: 148 163 184;
+  --accent: 96 165 250;
+  --card-border: rgba(255,255,255,0.04);
+  --glass: 14 17 23 / 0.6;
+}
+
+/* Base */
 html, body, #__next { height: 100%; }
-body { background-color: rgb(var(--bg)); color: rgb(var(--text)); -webkit-font-smoothing:antialiased; }
-a { color: rgb(var(--accent)); text-decoration: none; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(180deg, rgba(var(--bg),1) 0%, rgba(var(--bg),1) 100%);
+  color: rgb(var(--text));
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hero & layout utilities */
+.hero-container { padding-top: 5rem; padding-bottom: 5rem; }
+.hero-card {
+  background: rgb(var(--surface));
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.06);
+  border: 1px solid var(--card-border);
+}
+
+/* Reusable card */
+.card {
+  background: rgb(var(--surface));
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.04);
+  border: 1px solid var(--card-border);
+  color: rgb(var(--text));
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: rgb(var(--accent));
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.btn-ghost {
+  border: 1px solid rgba(15,23,42,0.08);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: transparent;
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(15,23,42,0.06);
+  font-size: 13px;
+  color: rgb(var(--muted));
+}
+
+/* Header glass */
+.header {
+  background-color: rgba(255,255,255,0.6);
+}
+:root.dark .header {
+  background-color: rgba(8,10,15,0.6);
+}
+
+/* small helper for dark variants using Tailwind utilities where needed */
